@@ -32,7 +32,7 @@ const popupAreaElem = document.getElementById("popupArea"),
 
 // 버튼 누르면 게임 시작
 startBtn.addEventListener("click", function () {
-  wrapElem.style.transform = "translateY(-50%)";
+  wrapElem.style.transform = "translateY(-100vh)";
 });
 
 // 정답체크 컴포넌트
@@ -59,7 +59,7 @@ function checkAnswer() {
 
   // 빈칸이 아닐때만 정답확인
   // 입력한 답이 중복됐는지 확인
-  if (!answerArray.includes(usersValue) ) {
+  if (!answerArray.includes(usersValue)) {
     // 입력한 답이 정답인지 확인
     if (usersValue === answer) {
       // 정답일 경우
