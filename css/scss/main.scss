@@ -92,11 +92,12 @@ body .wrap {
   #gameWrap {
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
     position: relative;
-
     .top {
-      height: 60%;
-      padding: 50px 0;
+      min-height: 60%;
+      padding: 20px 0;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -112,14 +113,14 @@ body .wrap {
         color: var(--subColor2);
         font-size: 1.5rem;
         font-family: "Pretendard";
-        margin-top: 20px;
+        margin-top: 1.85vh; /* 20px */
       }
       .checkArea {
         ul#wrongAnswer {
           display: flex;
           justify-content: center;
           gap: 15px;
-          margin-top: 80px;
+          margin-top: 7.4vh; /* 80px */
           li {
             width: 70px;
             height: 70px;
@@ -148,7 +149,7 @@ body .wrap {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-top: 50px;
+          margin-top: 4.62vh; /* 50px */
           .minNum {
             font-size: 2.2rem;
             color: var(--subColor7);
@@ -180,7 +181,7 @@ body .wrap {
         }
       }
       button.checkBtn {
-        margin-top: 30px;
+        margin-top: 2.77vh; /* 30px */
         background-color: var(--subColor5);
         a {
           display: inline-block;
@@ -190,12 +191,12 @@ body .wrap {
       }
     }
     .bottom {
+      flex: 1;
       width: 100%;
-      height: 40%;
       background-image: url(../images/bgImage.png);
       background-repeat: no-repeat;
       background-position: 0 0;
-      background-size: 3000px 100%;
+      background-size: calc(100% + 800px);
       position: relative;
       user-select: none;
       pointer-events: none;
@@ -209,10 +210,11 @@ body .wrap {
         ul.life {
           display: flex;
           flex-direction: row-reverse;
-          gap: 10px;
+          gap: 1vh;
           li {
-            width: 45px;
-            height: 40px;
+            // width: 45px;
+            // height: 40px;
+            padding:calc(3.70vh / 2);
             background: url(../images/heart.png) no-repeat center / contain;
             &.unable {
               background-image: url(../images/heart_enable.png);
@@ -223,19 +225,20 @@ body .wrap {
           height: calc(100% - 60px);
           margin: 0 auto;
           margin-top: 20px;
+          text-align: center;
           position: relative;
           &::before {
             content: "";
             display: block;
-            width: 160px;
+            width: 50%;
             height: 30px;
-            margin-left: -80px;
             border-radius: 50%;
             background-color: var(--subColor5);
-            opacity: 0.4;
+            opacity: 0.3;
             position: absolute;
             left: 50%;
-            bottom: 0;
+            bottom: 0%;
+            transform: translateX(-50%);
           }
           img {
             height: 100%;
@@ -251,12 +254,11 @@ body .wrap {
     height: 80%;
     max-height: 600px;
     display: none;
-    margin-left: -510px;
-    margin-top: -300px;
 
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 999;
     div.popup {
       width: 100%;
