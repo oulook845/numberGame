@@ -54,10 +54,10 @@
             </ul>
             <div class="inputArea">
               <div class="minNum"><span>0</span>&nbsp;&lt;&nbsp;</div>
-              <input id="usersNumber" type="number" placeholder="숫자를 입력하세요" />
+              <label for="usersNumber"><input id="usersNumber" type="number" placeholder="1~100 숫자를 입력하세요" /></label>
               <div class="maxNum">&nbsp;&lt;&nbsp;<span>100</span></div>
             </div>
-            <button id="submit" class="checkBtn"><a href="#">확인</a></button>
+            <button id="submit" class="checkBtn" onclick="checkAnswer()">확인</button>
           </div>
         </div>
         <div class="bottom">
@@ -76,42 +76,42 @@
         </div>
         <div id="popupArea">
           <!-- 중복 -->
-          <!-- <div class="popup duplicAns">
+          <div class="popup duplicAns">
             <div class="inner">
               <div class="caution">
-                <img src="./images/caution.png">
+                <img src="./images/caution.png" />
               </div>
               <p><span class="number">00</span>&nbsp;는 이미 입력한 숫자입니다.</p>
-              <button class="checkBtn"><a href="#">확인</a></button>
+              <button class="checkBtn">확인</button>
             </div>
-          </div> -->
+          </div>
 
           <!-- 정답 -->
           <div class="popup correctAns">
             <div class="inner">
               <h3>Found it!</h3>
               <p>숨겨진 숫자는 <span class="number">00</span>&nbsp;이었어요!</p>
-              <button class="checkBtn" onclick="gameReset()"><a href="#">확인</a></button>
+              <button class="checkBtn" onclick="gameReset()">확인</button>
             </div>
           </div>
 
           <!-- 이탈 -->
-          <!-- <div class="popup outlierAns">
+          <div class="popup outlierAns">
             <div class="inner">
               <div class="caution">
                 <img src="./images/caution.png">
               </div>
-              <p><span class="number">00</span>&nbsp;는 범위를 벗어난 숫자입니다.</p>
-              <button class="checkBtn"><a href="#">확인</a></button>
+              <p>0 ~ 100 올바른 숫자를 입력해주세요!</p>
+              <button class="checkBtn">확인</button>
             </div>
-          </div> -->
+          </div>
 
           <!-- 실패 -->
           <div class="popup errAns">
             <div class="inner">
               <h3 class="">Failed to find</h3>
               <p>숨겨진 숫자는 <span class="number">00</span>&nbsp;이었어요!</p>
-              <button class="checkBtn" onclick="gameReset()"><a href="#">확인</a></button>
+              <button class="checkBtn" onclick="gameReset()">확인</button>
             </div>
           </div>
         </div>

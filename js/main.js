@@ -39,35 +39,73 @@ startBtn.addEventListener("click", function () {
 let chance = 0;
 let maxNum = 100;
 let minNum = 0;
+let answerArray = [];
 
 function checkAnswer() {
-  let usersValue = Number(usersNumber.value); // 입력된 숫자 가져옴
-  if (usersValue !== "") {
-    // 빈칸이 아닐때만 정답확인
+  let usersValue = usersNumber.value.trim();
+
+  // 1~100 숫자가 아니라면 반환
+  if (usersValue !== "" && usersValue <= 100 && usersValue >= 0) {
+    usersValue = Number(usersValue); // 입력된 숫자 가져옴
+  } else {
+    // alert("정확한 숫자를 입력해주세요");
+    usersNumber.value = ""; // 입력칸 초기화
+    popupAreaElem.style.display = "block";
+    popupAreaElem.querySelector(".outlierAns").style.display = "block";
+    popupAreaElem.querySelector(".outlierAns p").textContent = `${minNum} ~ ${maxNum} 중 정답이 있어요`;
+    popupAreaElem.querySelector(".outlierAns button").focus();
+    return;
+  }
+
+  // 빈칸이 아닐때만 정답확인
+  // 입력한 답이 중복됐는지 확인
+  if (!answerArray.includes(usersValue) ) {
+    // 입력한 답이 정답인지 확인
     if (usersValue === answer) {
       // 정답일 경우
       wrongAnswer(usersValue);
       popupAreaElem.style.display = "block";
       popupAreaElem.querySelector(".correctAns").style.display = "block";
       popupAreaElem.querySelector(".correctAns .number").textContent = answer;
+      popupAreaElem.querySelector(".correctAns button").focus();
     } else if (usersValue > answer) {
       // 정답보다 클 경우
-      wrongAnswer(usersValue); // 오답 표시
-      chanceCount(); // 기회 소모
       if (usersValue < maxNum) {
+        wrongAnswer(usersValue); // 오답 카운트
+        chanceCount(); // 기회 소모
         maxNum = usersValue;
         maxNumElem.querySelector("span").textContent = usersValue;
+      } else if (usersValue > maxNum) {
+        // 최대값 보다 큰 값을 입력했을 경우
+        popupAreaElem.style.display = "block";
+        popupAreaElem.querySelector(".outlierAns").style.display = "block";
+        popupAreaElem.querySelector(".outlierAns p").textContent = `${minNum} ~ ${maxNum} 중 정답이 있어요`;
+        popupAreaElem.querySelector(".outlierAns button").focus();
       }
     } else if (usersValue < answer) {
       // 정답보다 작을 경우
-      wrongAnswer(usersValue);
-      chanceCount();
       if (usersValue > minNum) {
+        wrongAnswer(usersValue); // 오답 카운트
+        chanceCount(); // 기회 소모
         minNum = usersValue;
         minNumElem.querySelector("span").textContent = usersValue;
+      } else if (usersValue < minNum) {
+        // 최소값 보다 작은 값을 입력했을 경우
+        popupAreaElem.style.display = "block";
+        popupAreaElem.querySelector(".outlierAns").style.display = "block";
+        popupAreaElem.querySelector(".outlierAns p").textContent = `${minNum} ~ ${maxNum} 중 정답이 있어요!`;
+        popupAreaElem.querySelector(".outlierAns button").focus();
       }
     }
+  } else {
+    // 입력한 답이 중복된 숫자라면
+    popupAreaElem.style.display = "block";
+    popupAreaElem.querySelector(".duplicAns").style.display = "block";
+    popupAreaElem.querySelector(".duplicAns .number").textContent = usersValue;
+    popupAreaElem.querySelector(".duplicAns button").focus();
   }
+
+  answerArray.push(usersValue); // 배열에 입력한 숫자 추가
   usersNumber.value = ""; // 입력칸 초기화
 }
 
@@ -80,6 +118,7 @@ function chanceCount() {
     popupAreaElem.style.display = "block";
     popupAreaElem.querySelector(".errAns").style.display = "block";
     popupAreaElem.querySelector(".errAns .number").textContent = answer;
+    popupAreaElem.querySelector(".errAns button").focus();
   }
 }
 
@@ -99,24 +138,22 @@ function wrongAnswer(usersValue) {
 // 게임 리셋
 function gameReset() {
   chance = 0; // 기회 초기화
+  minNum = 0;
+  maxNum = 100;
   answer = randomNumber(); // 숫자 리셋
   console.log(answer);
+  answerArray = [];
   wrongAnswer_list.forEach((list) => {
     list.innerHTML = ""; // 모든 자식 삭제
     list.removeAttribute("class"); // class 모두 삭제
   });
   ueserLife_list.forEach((list) => {
-    list.classList.remove("unable");; // class 모두 삭제
+    list.classList.remove("unable"); // class 모두 삭제
   });
-  minNumElem.querySelector("span").textContent = 0;
-  maxNumElem.querySelector("span").textContent = 100;
+  minNumElem.querySelector("span").textContent = minNum;
+  maxNumElem.querySelector("span").textContent = maxNum;
   gameBottomElem.style.backgroundPosition = `0 0`; // 배경 이미지 초기화
 }
-
-// 확인 버튼 누르면 정답 확인
-submitBtnElem.addEventListener("click", function () {
-  checkAnswer();
-});
 
 // 팝업 상태창 확인 클릭시 팝업 닫기
 popupBtnElem.forEach((btnElem) => {
@@ -129,22 +166,9 @@ popupBtnElem.forEach((btnElem) => {
 });
 
 // enter 누르면 정답 확인
-window.addEventListener("keydown", function (e) {
-  if (e.code === "Enter" || e.location === 3) {
-    // 일반 엔터: e.location === 0 또는 1
-    // 숫자패드 엔터: e.location === 3
-    checkAnswer();
+usersNumber.addEventListener("keydown", function (e) {
+  if (e.key === "Enter" || e.keyCode === 3) {
+    e.preventDefault();
+    submitBtnElem.click();
   }
 });
-
-// 리셋 버튼 누르면 게임 재시작
-// resetBtn.addEventListener("click", function () {
-//   game_restart();
-//   button_switch(false);
-// });
-// function game_restart() {
-//   answer = randomNumber(); // 새로운 정답 숫자 저장
-//   commentElem.textContent = "숫자를 입력하세요"; // 코멘트 초기화
-//   wrongNumber.innerHTML = ""; // 틀린 숫자 초기화
-//   console.log(answer);
-// }

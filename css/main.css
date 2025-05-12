@@ -305,8 +305,3 @@ body {
   margin-top: 60px;
   background-color: var(--subColor1);
 }
-.wrap #popupArea div.popup .inner button a {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-}
