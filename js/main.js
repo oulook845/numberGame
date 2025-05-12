@@ -1,3 +1,11 @@
+// a href="#" 클릭 막기
+const aHref = document.querySelectorAll("a[href='#']");
+aHref.forEach((aElem) => {
+  aElem.addEventListener("click", function (e) {
+    e.preventDefault();
+  });
+});
+
 // 랜덤 숫자 고르기
 function randomNumber() {
   let randomNum = Math.floor(Math.random() * 100) + 1; // 1 ~ 100 구하기
