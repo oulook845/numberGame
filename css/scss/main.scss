@@ -283,6 +283,9 @@ body {
         z-index: 5;
         h3 {
           font-size: 7.5rem;
+          &.failTxt{
+            color:var(--subColor2);
+          }
         }
         p {
           font-family: "Pretendard";

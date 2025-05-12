@@ -281,6 +281,9 @@ body {
 .wrap #popupArea div.popup .inner h3 {
   font-size: 7.5rem;
 }
+.wrap #popupArea div.popup .inner h3.failTxt {
+  color: var(--subColor2);
+}
 .wrap #popupArea div.popup .inner p {
   font-family: "Pretendard";
   font-size: 2.5rem;
