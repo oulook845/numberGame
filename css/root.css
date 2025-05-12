@@ -1,0 +1,33 @@
+:root {
+  --mainColor: #5046c1;
+  --subColor1: #ef9de9;
+  --subColor2: #afacf3;
+  --subColor3: #ab56d6;
+  --subColor4: #5712c7;
+  --subColor5: #0e0788;
+  --subColor6: #4d42c3;
+  --subColor7: #DB5BCC;
+}
+
+/* 텍스트 숨기기 *부모설정 필요* */
+.txt_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.checkBtn {
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-family: "Pretendard";
+  color: #fff;
+  border-radius: 10px;
+}

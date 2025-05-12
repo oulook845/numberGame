@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="./css/import.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div class="wrap" id="wrap">
+      <!-- #intro -->
+      <div id="intro">
+        <div class="left_area">
+          <h1>
+            <span>GUESS</span>
+            <span>THE</span>
+            <span class="select">NUMBER</span>
+          </h1>
+        </div>
+        <div class="right_area">
+          <div class="txtBox">
+            <p>
+              1 ~ 100 중 한개의 숫자가
+              <br />랜덤으로 숨어있어요.
+            </p>
+            <p>
+              5번의 기회 안에
+              <br />숨겨진 숫자를 찾으세요!
+            </p>
+          </div>
+          <button id="startBtn">
+            <a href="#">START</a>
+          </button>
+        </div>
+      </div>
+
+      <!-- #gameWrap -->
+      <div id="gameWrap">
+        <div class="top">
+          <h2>GUESS the NUMBER</h2>
+          <p>
+            0 ~ 100 숫자중 하나의 숫자가 숨겨져 있어요
+            <br />5번의 기회 안에 숫자를 찾으세요
+          </p>
+          <div class="checkArea">
+            <ul id="wrongAnswer">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <div class="inputArea">
+              <div class="minNum"><span>0</span>&nbsp;&lt;&nbsp;</div>
+              <input id="usersNumber" type="number" placeholder="숫자를 입력하세요" />
+              <div class="maxNum">&nbsp;&lt;&nbsp;<span>100</span></div>
+            </div>
+            <button id="submit" class="checkBtn"><a href="#">확인</a></button>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="caractor">
+            <ul class="life">
+              <li><span class="txt_hidden">1</span></li>
+              <li><span class="txt_hidden">2</span></li>
+              <li><span class="txt_hidden">3</span></li>
+              <li><span class="txt_hidden">4</span></li>
+              <li><span class="txt_hidden">5</span></li>
+            </ul>
+            <div class="cracImg">
+              <img src="./images/caractor.gif" />
+            </div>
+          </div>
+        </div>
+        <div id="popupArea">
+          <!-- 중복 -->
+          <!-- <div class="popup duplicAns">
+            <div class="inner">
+              <div class="caution">
+                <img src="./images/caution.png">
+              </div>
+              <p><span class="number">00</span>&nbsp;는 이미 입력한 숫자입니다.</p>
+              <button class="checkBtn"><a href="#">확인</a></button>
+            </div>
+          </div> -->
+
+          <!-- 정답 -->
+          <div class="popup correctAns">
+            <div class="inner">
+              <h3>Found it!</h3>
+              <p>숨겨진 숫자는 <span class="number">00</span>&nbsp;이었어요!</p>
+              <button class="checkBtn" onclick="gameReset()"><a href="#">확인</a></button>
+            </div>
+          </div>
+
+          <!-- 이탈 -->
+          <!-- <div class="popup outlierAns">
+            <div class="inner">
+              <div class="caution">
+                <img src="./images/caution.png">
+              </div>
+              <p><span class="number">00</span>&nbsp;는 범위를 벗어난 숫자입니다.</p>
+              <button class="checkBtn"><a href="#">확인</a></button>
+            </div>
+          </div> -->
+
+          <!-- 실패 -->
+          <div class="popup errAns">
+            <div class="inner">
+              <h3 class="">Failed to find</h3>
+              <p>숨겨진 숫자는 <span class="number">00</span>&nbsp;이었어요!</p>
+              <button class="checkBtn" onclick="gameReset()"><a href="#">확인</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- java script -->
+    <script src="./js/main.js"></script>
+  </body>
+</html>
